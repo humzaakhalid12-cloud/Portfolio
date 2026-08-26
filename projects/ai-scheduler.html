@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Scheduler Agent — Humza Khalid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEFE9;--ink:#14181F;--graphite:#4A5261;--signal:#FF5C1A;
+    --track:#1F6F4A;--line:#C7CBC0;--white:#FAFAF7;--radius:2px;--maxw:760px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;}
+  h1{font-family:'Space Grotesk',sans-serif;margin:0;font-size:clamp(32px,5vw,44px);}
+  a{color:inherit;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:22px 28px;max-width:1120px;margin:0 auto;}
+  .logo{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:15px;letter-spacing:0.04em;border:1.5px solid var(--ink);padding:6px 10px;border-radius:var(--radius);text-decoration:none;}
+  .back{font-family:'JetBrains Mono',monospace;font-size:12px;text-decoration:none;color:var(--graphite);}
+  .back:hover{color:var(--ink);}
+  main{max-width:var(--maxw);margin:0 auto;padding:32px 28px 80px;}
+  .entry-no{font-size:11.5px;letter-spacing:0.08em;color:var(--signal);margin-bottom:12px;}
+  .subtitle{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--graphite);margin:8px 0 24px;}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:32px;}
+  .tags span{font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 8px;border:1px solid var(--track);color:var(--track);border-radius:var(--radius);}
+  .image-placeholder{
+    aspect-ratio:16/9;background:var(--white);border:1px dashed var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--graphite);
+    margin-bottom:32px;border-radius:var(--radius);
+  }
+  .body p{color:var(--graphite);margin:0 0 16px;}
+  .body h2{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--track);margin:32px 0 12px;}
+</style>
+</head>
+<body>
+  <nav>
+    <a class="logo" href="../index_3.html">HK</a>
+    <a class="back" href="../index_3.html#projects">← Back to projects</a>
+  </nav>
+  <main>
+    <div class="entry-no mono">ENTRY 03 — AI / AUTOMATION</div>
+    <h1>AI Scheduler Agent</h1>
+    <p class="subtitle mono">Personal Scheduling Automation</p>
+    <div class="tags">
+      <span>AWS Lambda</span><span>Claude API</span><span>Twilio</span><span>DynamoDB</span>
+    </div>
+    <div class="image-placeholder">Project image coming soon</div>
+    <div class="body">
+      <p>An AI-powered agent that reads Gmail, generates a daily schedule using the Claude API, and sends a WhatsApp digest via Twilio. It runs on AWS Lambda with EventBridge triggers and stores state in DynamoDB.</p>
+      <h2>Overview</h2>
+      <p>Gmail OAuth handles authentication so the agent can pull relevant emails and turn them into a structured plan. Architecture diagrams and screenshots will be added in a future update.</p>
+    </div>
+  </main>
+</body>
+</html>

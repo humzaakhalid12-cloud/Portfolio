@@ -127,11 +127,30 @@
   .hero{
     display:grid;
     grid-template-columns:1.3fr 0.9fr;
-    gap:56px;
+    gap:48px 56px;
     align-items:start;
-    padding:32px 28px 80px;
+    padding:32px 28px 64px;
     max-width:var(--maxw);
     margin:0 auto;
+  }
+  .hero-text{grid-column:1;grid-row:1;}
+  .hero-photo{
+    grid-column:2;
+    grid-row:1;
+    aspect-ratio:4/5;
+    background:var(--ink);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .hero-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .hero-skills{
+    grid-column:1 / -1;
+    grid-row:2;
   }
   .eyebrow{
     font-family:'JetBrains Mono',monospace;
@@ -182,52 +201,6 @@
   .btn-outline{background:transparent;color:var(--ink);}
   .btn-outline:hover{background:var(--ink);color:var(--paper);}
 
-  /* ---------- ID card ---------- */
-  .id-card{
-    border:1.5px solid var(--ink);
-    background:var(--white);
-    border-radius:var(--radius);
-    overflow:hidden;
-  }
-  .id-photo{
-    aspect-ratio:4/5;
-    background:var(--ink);
-    position:relative;
-    overflow:hidden;
-  }
-  .id-photo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-  }
-  .id-photo .id-tag{
-    position:absolute;
-    top:12px;
-    left:12px;
-    font-family:'JetBrains Mono',monospace;
-    font-size:10.5px;
-    letter-spacing:0.05em;
-    color:var(--paper);
-    background:rgba(255,255,255,0.08);
-    border:1px solid rgba(250,250,247,0.35);
-    padding:4px 8px;
-    border-radius:var(--radius);
-  }
-  .id-meta{padding:16px 18px;}
-  .id-row{
-    display:flex;
-    justify-content:space-between;
-    gap:12px;
-    padding:9px 0;
-    border-bottom:1px solid var(--line);
-    font-family:'JetBrains Mono',monospace;
-    font-size:12px;
-  }
-  .id-row:last-child{border-bottom:none;}
-  .id-row span:first-child{color:var(--graphite);letter-spacing:0.05em;}
-  .id-row span:last-child{text-align:right;font-weight:500;}
-
   /* ---------- Section shell ---------- */
   section{padding:64px 28px;border-top:1px solid var(--line);}
   section .wrap{padding:0;max-width:var(--maxw);margin:0 auto;}
@@ -254,7 +227,7 @@
     background:var(--line);
     border:1px solid var(--line);
   }
-  .skill-col{background:var(--paper);padding:22px 24px;}
+  .skill-col{background:var(--white);padding:22px 24px;}
   .skill-col h3{
     font-family:'JetBrains Mono',monospace;
     font-size:12px;
@@ -283,6 +256,46 @@
     padding:26px 26px 24px;
     display:flex;
     flex-direction:column;
+    position:relative;
+    text-decoration:none;
+    color:inherit;
+    overflow:hidden;
+    cursor:pointer;
+    transition:background .15s, box-shadow .15s;
+  }
+  .project-card:hover{
+    background:var(--paper-2);
+    box-shadow:inset 0 0 0 1.5px var(--ink);
+  }
+  .project-card-hover{
+    position:absolute;
+    inset:0;
+    background:rgba(20,24,31,0.88);
+    color:var(--paper);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    opacity:0;
+    transition:opacity .18s ease;
+    pointer-events:none;
+  }
+  .project-card:hover .project-card-hover,
+  .project-card:focus-visible .project-card-hover{
+    opacity:1;
+  }
+  .project-card-hover .hover-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--signal);
+  }
+  .project-card-hover .hover-action{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:18px;
+    font-weight:600;
   }
   .entry-no{
     font-family:'JetBrains Mono',monospace;
@@ -325,8 +338,20 @@
   }
   .project-link:hover{color:var(--signal);}
 
+  @media (prefers-reduced-motion: reduce){
+    .project-card-hover{transition:none;}
+  }
+
   @media (max-width:760px){
-    .hero{grid-template-columns:1fr;}
+    .hero{
+      grid-template-columns:1fr;
+      gap:32px;
+    }
+    .hero-text,.hero-photo,.hero-skills{
+      grid-column:1;
+      grid-row:auto;
+    }
+    .hero-photo{max-width:280px;}
     .skills-grid,.project-grid{grid-template-columns:1fr;}
   }
 
@@ -408,54 +433,36 @@
         <a class="btn btn-outline" href="resume.pdf" target="_blank" rel="noopener">Download Resume ↓</a>
       </div>
     </div>
-    <div class="id-card">
-      <div class="id-photo">
-        <span class="id-tag">ID · HK-2029</span>
-        <img src="photo.jpg" alt="Humza Khalid">
-      </div>
-      <div class="id-meta">
-        <div class="id-row"><span>STATUS</span><span>Open to internships</span></div>
-        <div class="id-row"><span>SCHOOL</span><span>Rutgers University</span></div>
-        <div class="id-row"><span>GRAD</span><span>Est. May 2029</span></div>
-        <div class="id-row"><span>BASED</span><span>Princeton Junction, NJ</span></div>
-      </div>
+    <div class="hero-photo">
+      <img src="photo.jpg" alt="Humza Khalid">
     </div>
-  </section>
-
-  <section id="skills">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Spec Sheet</h2>
-        <span class="count mono">// skills &amp; tools</span>
+    <div id="skills" class="hero-skills skills-grid">
+      <div class="skill-col">
+        <h3>Languages</h3>
+        <ul>
+          <li>Java</li>
+          <li>Python</li>
+          <li>JavaScript / TypeScript</li>
+          <li>HTML / SQL</li>
+        </ul>
       </div>
-      <div class="skills-grid">
-        <div class="skill-col">
-          <h3>Languages</h3>
-          <ul>
-            <li>Java</li>
-            <li>Python</li>
-            <li>JavaScript / TypeScript</li>
-            <li>HTML / SQL</li>
-          </ul>
-        </div>
-        <div class="skill-col">
-          <h3>Tools &amp; Frameworks</h3>
-          <ul>
-            <li>React / Next.js / Node.js</li>
-            <li>PostgreSQL / SQLite / Prisma</li>
-            <li>AWS / Vercel</li>
-            <li>GitHub / JIRA</li>
-          </ul>
-        </div>
-        <div class="skill-col">
-          <h3>Core CS</h3>
-          <ul>
-            <li>Data Structures &amp; Algorithms</li>
-            <li>Problem Solving (LeetCode)</li>
-            <li>Time &amp; Space Complexity</li>
-            <li>REST APIs &amp; Web Scraping</li>
-          </ul>
-        </div>
+      <div class="skill-col">
+        <h3>Tools &amp; Frameworks</h3>
+        <ul>
+          <li>React / Next.js / Node.js</li>
+          <li>PostgreSQL / SQLite / Prisma</li>
+          <li>AWS / Vercel</li>
+          <li>GitHub / JIRA</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h3>Core CS</h3>
+        <ul>
+          <li>Data Structures &amp; Algorithms</li>
+          <li>Problem Solving (LeetCode)</li>
+          <li>Time &amp; Space Complexity</li>
+          <li>REST APIs &amp; Web Scraping</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -468,7 +475,7 @@
       </div>
       <div class="project-grid">
 
-        <article class="project-card">
+        <a href="projects/betgrades.html" class="project-card">
           <div class="entry-no mono">ENTRY 01 — SEP 2025 · IN PROGRESS</div>
           <h3>BetGrades</h3>
           <p class="project-sub mono">Sports Betting Tracker &amp; Analytics</p>
@@ -476,9 +483,13 @@
           <div class="tags">
             <span>Next.js</span><span>React</span><span>Node.js</span><span>PostgreSQL</span>
           </div>
-        </article>
+          <div class="project-card-hover" aria-hidden="true">
+            <span class="hover-label">Project page</span>
+            <span class="hover-action">View details ↗</span>
+          </div>
+        </a>
 
-        <article class="project-card">
+        <a href="projects/f1-prediction.html" class="project-card">
           <div class="entry-no mono">ENTRY 02 — MACHINE LEARNING</div>
           <h3>F1 Race Winner Prediction</h3>
           <p class="project-sub mono">ML Pipeline · Formula 1 Data</p>
@@ -486,9 +497,13 @@
           <div class="tags">
             <span>Python</span><span>Pandas</span><span>scikit-learn</span><span>XGBoost</span><span>FastF1</span>
           </div>
-        </article>
+          <div class="project-card-hover" aria-hidden="true">
+            <span class="hover-label">Project page</span>
+            <span class="hover-action">View details ↗</span>
+          </div>
+        </a>
 
-        <article class="project-card">
+        <a href="projects/ai-scheduler.html" class="project-card">
           <div class="entry-no mono">ENTRY 03 — AI / AUTOMATION</div>
           <h3>AI Scheduler Agent</h3>
           <p class="project-sub mono">Personal Scheduling Automation</p>
@@ -496,9 +511,13 @@
           <div class="tags">
             <span>AWS Lambda</span><span>Claude API</span><span>Twilio</span><span>DynamoDB</span>
           </div>
-        </article>
+          <div class="project-card-hover" aria-hidden="true">
+            <span class="hover-label">Project page</span>
+            <span class="hover-action">View details ↗</span>
+          </div>
+        </a>
 
-        <article class="project-card">
+        <a href="projects/macro-tracker.html" class="project-card">
           <div class="entry-no mono">ENTRY 04 — iOS / MOBILE</div>
           <h3>Macro Tracking App</h3>
           <p class="project-sub mono">Native iOS App · MVP</p>
@@ -506,7 +525,11 @@
           <div class="tags">
             <span>Swift</span><span>SwiftUI</span><span>SwiftData</span><span>MVVM</span>
           </div>
-        </article>
+          <div class="project-card-hover" aria-hidden="true">
+            <span class="hover-label">Project page</span>
+            <span class="hover-action">View details ↗</span>
+          </div>
+        </a>
 
       </div>
     </div>
