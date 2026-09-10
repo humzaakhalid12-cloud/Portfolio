@@ -125,18 +125,25 @@
 
   /* ---------- Hero ---------- */
   .hero{
-    display:grid;
-    grid-template-columns:1.3fr 0.9fr;
-    gap:48px 56px;
-    align-items:start;
+    display:flex;
+    flex-direction:column;
+    gap:48px;
     padding:32px 28px 64px;
     max-width:var(--maxw);
     margin:0 auto;
   }
-  .hero-text{grid-column:1;grid-row:1;}
+  .hero-intro{
+    display:grid;
+    grid-template-columns:1.3fr 0.9fr;
+    grid-template-rows:auto auto;
+    gap:24px 56px;
+    align-items:start;
+  }
+  .hero-copy{grid-column:1;grid-row:1;}
   .hero-photo{
     grid-column:2;
     grid-row:1;
+    width:100%;
     aspect-ratio:4/5;
     background:var(--ink);
     border-radius:var(--radius);
@@ -148,10 +155,11 @@
     object-fit:cover;
     display:block;
   }
-  .hero-skills{
-    grid-column:1 / -1;
+  .hero-cta{
+    grid-column:1;
     grid-row:2;
   }
+  .hero-skills{width:100%;}
   .eyebrow{
     font-family:'JetBrains Mono',monospace;
     font-size:12.5px;
@@ -171,7 +179,7 @@
     font-size:17px;
     color:var(--graphite);
     max-width:46ch;
-    margin-bottom:32px;
+    margin-bottom:0;
   }
   .cta-row{
     display:flex;
@@ -344,14 +352,18 @@
 
   @media (max-width:760px){
     .hero{
-      grid-template-columns:1fr;
       gap:32px;
+      padding:24px 16px 48px;
     }
-    .hero-text,.hero-photo,.hero-skills{
-      grid-column:1;
-      grid-row:auto;
+    .hero-intro{gap:16px 20px;}
+    .hero h1{
+      font-size:clamp(28px,8.5vw,42px);
+      margin-bottom:12px;
     }
-    .hero-photo{max-width:280px;}
+    .hero .bio{font-size:14px;line-height:1.45;}
+    .eyebrow{font-size:11px;margin-bottom:10px;}
+    .cta-row{gap:8px;}
+    .btn{padding:10px 12px;font-size:11px;}
     .skills-grid,.project-grid{grid-template-columns:1fr;}
   }
 
@@ -423,18 +435,20 @@
   </nav>
 
   <section class="hero" style="border-top:none;padding-top:32px;">
-    <div class="hero-text">
-      <span class="eyebrow">Computer Science — Sophomore</span>
-      <h1>Humza<br>Khalid</h1>
-      <p class="bio">Computer Science student at Rutgers University seeking an engineering internship to contribute to challenging, real-world systems. Driven to take full ownership of features from design through deployment, write clean and scalable code, and solve complex technical problems that create measurable user impact.</p>
-      <div class="cta-row">
+    <div class="hero-intro">
+      <div class="hero-copy">
+        <span class="eyebrow">Computer Science — Sophomore</span>
+        <h1>Humza<br>Khalid</h1>
+        <p class="bio">Computer Science student at Rutgers University seeking an engineering internship to contribute to challenging, real-world systems. Driven to take full ownership of features from design through deployment, write clean and scalable code, and solve complex technical problems that create measurable user impact.</p>
+      </div>
+      <div class="hero-photo">
+        <img src="photo.jpg" alt="Humza Khalid">
+      </div>
+      <div class="cta-row hero-cta">
         <a class="btn btn-primary" href="https://www.linkedin.com/in/humza-khalid-533b28371/" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
         <a class="btn btn-outline" href="https://github.com/humzaakhalid12-cloud" target="_blank" rel="noopener">View GitHub ↗</a>
         <a class="btn btn-outline" href="resume.pdf" target="_blank" rel="noopener">Download Resume ↓</a>
       </div>
-    </div>
-    <div class="hero-photo">
-      <img src="photo.jpg" alt="Humza Khalid">
     </div>
     <div id="skills" class="hero-skills skills-grid">
       <div class="skill-col">
